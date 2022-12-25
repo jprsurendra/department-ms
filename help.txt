@@ -1,0 +1,93 @@
+Postman
+=======
+Test Case - 01
+-------------- -------------- -------------- -------------- --------------
+GET ==> http://localhost:9001/departments/
+Response ==>
+    {
+        "timestamp": "2022-12-25T12:46:53.007+00:00",
+        "status": 405,
+        "error": "Method Not Allowed",
+        "path": "/departments/"
+    }
+In Log==>     2022-12-25 18:16:12.111  WARN 40908 --- [nio-9001-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+
+Test Case - 02
+-------------- -------------- -------------- -------------- --------------
+GET ==> http://localhost:9001/departments
+Response ==>
+    {
+        "timestamp": "2022-12-25T12:43:49.746+00:00",
+        "status": 404,
+        "error": "Not Found",
+        "path": "/departments"
+    }
+In Log==> Nothing
+
+Test Case - 03
+-------------- -------------- -------------- -------------- --------------
+POST ==> http://localhost:9001/departments/
+Body: (.)raw  JSON
+    {
+        "departmentName": "Science",
+        "departmentAddress": "Physics",
+        "departmentCode": "SC/PH/001"
+    }
+
+Response ==>
+    {
+        "departmentId": 1,
+        "departmentName": "Science",
+        "departmentAddress": "Physics",
+        "departmentCode": "SC/PH/001"
+    }
+In Log==> Nothing
+Database ==> Data inserted into DB
+
+Test Case - 04
+-------------- -------------- -------------- -------------- --------------
+POST ==> http://localhost:9001/departments/
+Body: (.)raw  JSON
+    {
+        "departmentName": "Science",
+        "departmentAddress": "Chemistry",
+        "departmentCode": "SC/CH/002"
+    }
+
+Response ==>
+    {
+        "departmentId": 2,
+        "departmentName": "Science",
+        "departmentAddress": "Chemistry",
+        "departmentCode": "SC/CH/002"
+    }
+In Log==> Nothing
+Database ==> Data inserted into DB
+
+Test Case - 05
+-------------- -------------- -------------- -------------- --------------
+GET ==> http://localhost:9001/departments/2
+Response ==>
+    {
+        "departmentId": 2,
+        "departmentName": "Science",
+        "departmentAddress": "Chemistry",
+        "departmentCode": "SC/CH/002"
+    }
+In Log==>  Nothing
+
+Test Case - 06
+-------------- -------------- -------------- -------------- --------------
+GET ==> http://localhost:9001/departments/1
+Response ==>
+    {
+        "departmentId": 1,
+        "departmentName": "Science",
+        "departmentAddress": "Physics",
+        "departmentCode": "SC/PH/001"
+    }
+In Log==>  Nothing
+
+
+
+
